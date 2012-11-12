@@ -1,0 +1,16 @@
+#game_tooltip
+{
+    position:absolute;
+    width:800px;
+    background: linear-gradient(#ECECEC, #CACACA);
+    border-bottom: 1px solid #9A9A9A;
+    border-radius: 0px 0px 10px 10px;
+    color:#585351;
+    text-shadow: 0 1px 0 white;
+    padding-top:10px;
+    padding-bottom:10px;
+    font-weight: bold;
+    text-align: center;
+    top:0px;
+    display:none;
+}

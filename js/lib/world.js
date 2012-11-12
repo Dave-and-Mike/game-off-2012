@@ -233,26 +233,36 @@ function world()
                 {
                     var obj = null;
 
-                    switch ( data[i]['type'] )
+                    if ( 'tooltip' == data[i]['type'] )
                     {
-                        case 'block':
-                        case 'wall':
-                            data[i]['type'] = 'block';
-                        case 'lever':
-                        case 'door':
-                        case 'goal':
-                            var type = data[i]['type'];
-                            obj      = new window[type]();
-                            _objects.add( obj );
+                        obj = new tooltip();
+                        obj.setDimensions(data[i]['width'], data[i]['height']);
+                        obj.setText(data[i]['text']);
+                        _objects.add( obj );
+                    }
+                    else
+                    {
+                        switch ( data[i]['type'] )
+                        {
+                            case 'block':
+                            case 'wall':
+                                data[i]['type'] = 'block';
+                            case 'lever':
+                            case 'door':
+                            case 'goal':
+                                var type = data[i]['type'];
+                                obj      = new window[type]();
+                                _objects.add( obj );
 
-                            if ( 'goal' === type )
-                            {
-                                _goals.push( obj );
-                            }
-                            break;
+                                if ( 'goal' === type )
+                                {
+                                    _goals.push( obj );
+                                }
+                                break;
 
-                        case 'player':
-                            obj = _p.getCurrentPlayable();
+                            case 'player':
+                                obj = _p.getCurrentPlayable();
+                        }
                     }
 
                     if ( null != obj )
