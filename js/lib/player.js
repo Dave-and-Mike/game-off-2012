@@ -20,11 +20,20 @@ function player()
      * @var array An array of playables at the players disposal
      */
     var _playables = new gamejs.sprite.Group();
-    _playables.add( new playable() );
 
+    /**
+     * @var float How fast the player is currently walking (minus
+     * figure represents left, positive right)
+     */
     var _walkVelocity = 0;
 
+    /**
+     * @var int The number of clones created
+     */
     var _numClones = 0;
+
+    //Start the player with a single playable
+    _playables.add( new playable() );
 
     /**
      * @var int The current index of the playable currently under the
@@ -32,6 +41,12 @@ function player()
      */
     var _currentIndex = 0;
 
+    /**
+     * Handles player input.
+     *
+     * @param world world The world this event came from
+     * @param gamejs.Event event The event that fired
+     */
     this.handleInput = function(event){
         //If a key has been pressed then check it to see if an
         //action needs taking place
@@ -79,13 +94,9 @@ function player()
         {
             switch( event.key )
             {
-                //The A key, or left arrow starts to move the player left
+                //Letting go of direction events will stop the player dead
                 case gamejs.event.K_a:
                 case gamejs.event.K_LEFT:
-                    _walkVelocity = 0;
-                    break;
-
-                //The D key, or right arrow starts to move the player right
                 case gamejs.event.K_d:
                 case gamejs.event.K_RIGHT:
                     _walkVelocity = 0;
@@ -94,6 +105,11 @@ function player()
         }
     }
 
+    /**
+     * Returns the number of clonmes that the player has created
+     *
+     * @return int
+     */
     this.getNumClones = function(){
         return _numClones;
     }
@@ -106,8 +122,7 @@ function player()
      *
      * @return player
      */
-    this.setVelocity = function( x, y )
-    {
+    this.setVelocity = function( x, y ){
         var playable = this.getCurrentPlayable();
         playable.setVelocity( x, y );
 
@@ -120,8 +135,7 @@ function player()
      *
      * @return object
      */
-    this.getVelocity = function()
-    {
+    this.getVelocity = function(){
         return this.getCurrentPlayable().getVelocity();
     }
 
@@ -132,8 +146,7 @@ function player()
      *
      * @return player
      */
-    this.update = function( msDuration )
-    {
+    this.update = function( msDuration ){
         if ( _walkVelocity )
         {
             this.setVelocity( _walkVelocity, this.getVelocity().y );
@@ -150,8 +163,7 @@ function player()
      *
      * @return player
      */
-    this.draw = function( mainSurface )
-    {
+    this.draw = function( mainSurface ){
         _playables.draw( mainSurface );
         return this;
     }
@@ -162,8 +174,7 @@ function player()
      *
      * @return player
      */
-    this.moveToNext = function()
-    {
+    this.moveToNext = function(){
         if ( (_currentIndex + 1) == this.getPlayables().sprites().length )
         {
             _currentIndex = 0;
@@ -181,8 +192,7 @@ function player()
      *
      * @return array
      */
-    this.getPlayables = function()
-    {
+    this.getPlayables = function(){
         return _playables;
     }
 
@@ -191,8 +201,7 @@ function player()
      *
      * @return playable
      */
-    this.getCurrentPlayable = function()
-    {
+    this.getCurrentPlayable = function(){
         return this.getPlayables().sprites()[_currentIndex];
     }
 
@@ -202,8 +211,9 @@ function player()
      *
      * @return player
      */
-    this.clone = function()
-    {
+    this.clone = function(){
+        //Get the template for the clone, and create a clone to the left
+        //of the current playable
         var template = this.getCurrentPlayable();
         var clone    = new playable();
         var newX     = ( template.getX() - (template.rect.width * 2) );

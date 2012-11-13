@@ -27,14 +27,29 @@ function playable()
      */
     var _velocityY = 0.0;
 
-
+    /**
+     * @var string How the player is currently moving (walk, jump, fall etc.)
+     */
     var _moveType = '';
 
+    /**
+     * Sets how the player is currently moving, and generates the correct
+     * sprite image
+     *
+     * @param string type The type of movement
+     *
+     * @return playable
+     */
     this.setMovement = function( type ){
+        //Only change the type if it has actually changed. No need to do any
+        //processing otherwise
         if ( type != _moveType )
         {
+            //Get the old size so that we can modify the X and Y co-ordinates
+            //accordingly if the sprite changes height or width
             var oldSize = this.image.getSize();
 
+            //Set the correct sprite image depending on the type of movement
             switch(type)
             {
                 case 'walk':
@@ -48,24 +63,39 @@ function playable()
                     break;
             }
 
+            //Get and set the new sizes
             var _size        = this.image.getSize();
             this.rect.width  = _size[0];
             this.rect.height = _size[1];
 
+            //Set the new X and Y co-ordinates
             this.rect.x += oldSize[0] - _size[0];
             this.rect.y += oldSize[1] - _size[1];
 
             _moveType = type;
         }
+
+        return this;
     }
 
-    this.getMovement = function()
-    {
+    /**
+     * Returns the current movement type of the playable
+     *
+     * @return string
+     */
+    this.getMovement = function(){
         return _moveType;
     }
 
-    this.setPosition = function(x, y)
-    {
+    /**
+     * Sets the position of the object
+     *
+     * @param float x The X co-ordinate
+     * @param float y The Y co-ordinate
+     *
+     * @return playable
+     */
+    this.setPosition = function(x, y){
         this.setX(x);
         this.setY(y);
 
@@ -80,8 +110,7 @@ function playable()
      *
      * @return playable
      */
-    this.setX = function( x )
-    {
+    this.setX = function( x ){
         if ( typeof(x) != 'number')
         {
             throw 'Value for X must be a number';
@@ -96,8 +125,7 @@ function playable()
      *
      * @return float
      */
-    this.getX = function()
-    {
+    this.getX = function(){
         return this.rect.x;
     }
 
@@ -109,8 +137,7 @@ function playable()
      *
      * @return playable
      */
-    this.setY = function( y )
-    {
+    this.setY = function( y ){
         if ( typeof(y) != 'number')
         {
             throw 'Value for Y must be a number';
@@ -125,8 +152,7 @@ function playable()
      *
      * @return float
      */
-    this.getY = function()
-    {
+    this.getY = function(){
         return this.rect.y;
     }
 
@@ -139,8 +165,7 @@ function playable()
      *
      * @return playable
      */
-    this.setVelocity = function( x, y )
-    {
+    this.setVelocity = function( x, y ){
         if ( typeof(x) != 'number')
         {
             throw 'Value for X must be a number';
@@ -162,27 +187,39 @@ function playable()
      *
      * @return object
      */
-    this.getVelocity = function()
-    {
+    this.getVelocity = function(){
         return { 'x':_velocityX, 'y':_velocityY };
     }
 
-    this.update = function( msDuration )
-    {
-        if ( _moveType == '' )
+    /**
+     * Updates the object, ready for the next draw request
+     *
+     * @param msDuration
+     *
+     * @return playable
+     */
+    this.update = function( msDuration ){
+        //Set the default movement to wealking, if it hasn't already been set
+        if ( this.getMovement() == '' )
         {
             this.setMovement('walk');
         }
 
+        //If the player is falling then set that sprite up. Other movement
+        //types are dealt with outside this object
         if ( this.getVelocity().y > 0 )
         {
             this.setMovement('fall');
         }
 
+        //Calculate the distance the playable has moved since the last frame
         var distanceX = (this.getVelocity().x * (msDuration/1000));
         var distanceY = (this.getVelocity().y * (msDuration/1000));
 
+        //Move the playable the calculated distance
         this.rect.moveIp( distanceX, distanceY );
+
+        return this;
     }
 }
 

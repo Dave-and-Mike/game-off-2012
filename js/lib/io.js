@@ -26,8 +26,15 @@ function io()
     this.image = gamejs.image.load('img/blank.png');
     this.rect  = new gamejs.Rect([0,0]);
 
-    this.setPosition = function(x, y)
-    {
+    /**
+     * Sets the position of the object
+     *
+     * @param float x The X co-ordinate
+     * @param float y The Y co-ordinate
+     *
+     * @return io
+     */
+    this.setPosition = function(x, y){
         this.rect.x = x;
         this.rect.y = y;
         return this;
@@ -40,8 +47,7 @@ function io()
      *
      * @return io
      */
-    var _stateChange = function()
-    {
+    var _stateChange = function(){
         //Change the state of all outputs to the new state of this object,
         //effectively causing a knock-on affect down the chain
         for( var i = 0; i < _outputs.length; i++ )
@@ -59,8 +65,7 @@ function io()
      *
      * @return io
      */
-    this.setState = function(state)
-    {
+    this.setState = function(state){
         if ( typeof(state) != 'boolean' )
         {
             throw 'State must be a boolean';
@@ -83,8 +88,7 @@ function io()
      *
      * @return boolean
      */
-    this.getState = function()
-    {
+    this.getState = function(){
         return _state;
     };
 
@@ -93,8 +97,7 @@ function io()
      *
      * @return array
      */
-    this.getInputs = function()
-    {
+    this.getInputs = function(){
         return _inputs;
     };
 
@@ -106,8 +109,7 @@ function io()
      *
      * @return io
      */
-    this.addInput = function( input )
-    {
+    this.addInput = function( input ){
         if ( !(input instanceof io) )
         {
             throw 'Input must be of type \'io\'';
@@ -132,8 +134,7 @@ function io()
      *
      * @return io
      */
-    this.addOutput = function( output )
-    {
+    this.addOutput = function( output ){
         if ( !(output instanceof io) )
         {
             throw 'Output must be of type \'io\'';

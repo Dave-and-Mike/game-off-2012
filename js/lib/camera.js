@@ -37,8 +37,7 @@ function camera( world )
      *
      * @return camera
      */
-    this.setWidth = function( width )
-    {
+    this.setWidth = function( width ){
         if ( typeof(width) != 'number' )
         {
             throw 'Width must be a number';
@@ -55,8 +54,7 @@ function camera( world )
      *
      * @return camera
      */
-    this.setHeight = function( height )
-    {
+    this.setHeight = function( height ){
         if ( typeof(height) != 'number' )
         {
             throw 'Height must be a number';
@@ -75,8 +73,7 @@ function camera( world )
      *
      * @return camera
      */
-    this.setPosition = function( x, y )
-    {
+    this.setPosition = function( x, y ){
         if ( typeof(x) != 'number' )
         {
             throw 'X position must be a number';
@@ -103,8 +100,12 @@ function camera( world )
         return this;
     }
 
-    this.isAnimating = function()
-    {
+    /**
+     * Whether or not the camera is currently animating towards an object
+     *
+     * @return boolean
+     */
+    this.isAnimating = function(){
         return _animating;
     }
 
@@ -118,8 +119,7 @@ function camera( world )
      *
      * @return camera
      */
-    this.focusOn = function( rect, track, animate )
-    {
+    this.focusOn = function( rect, track, animate ){
         //Mmmmm.. type hinting
         if ( !(rect instanceof gamejs.Rect) )
         {
@@ -183,8 +183,7 @@ function camera( world )
      *
      * @param int msDuration
      */
-    this.update = function( msDuration )
-    {
+    this.update = function( msDuration ){
         if ( _track )
         {
             //Get the new X and Y c-ordinates, so that the camera is focused
@@ -221,8 +220,7 @@ function camera( world )
      *
      * @return object An object containing the x and y position
      */
-    var _getSanatisedPosition = function( x, y )
-    {
+    var _getSanatisedPosition = function( x, y ){
         var position = { 'x': x, 'y': y };
         var level    = _world.getBoundingRect();
 
@@ -288,8 +286,7 @@ function camera( world )
      */
     var _getNextAnimatedPosition = function(
         destinationX, destinationY, msDuration
-    )
-    {
+    ){
         //Make sure that the new destination is not outside the world
         var sanePosition = _getSanatisedPosition(destinationX, destinationY);
 
@@ -373,8 +370,7 @@ function camera( world )
      * @param float distanceX The distance the camera has travelled on the X
      * @param float distanceY The distance the camera has travelled on the Y
      */
-    var _updateObjects = function( distanceX, distanceY )
-    {
+    var _updateObjects = function( distanceX, distanceY ){
         var objects = _world.getObjects();
         for ( var i = 0; i < objects.length; i++)
         {

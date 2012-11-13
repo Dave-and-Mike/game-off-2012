@@ -1,4 +1,6 @@
 gamejs = require('gamejs');
+
+//Preload all the required images
 gamejs.preload([
     'img/player.png','img/block.png', 'img/blank.png'
     ,'img/switch.png','img/door.png'
@@ -8,6 +10,7 @@ gamejs.ready(function() {
 
     var display = gamejs.display.setMode([800, 600]);
 
+    //Ensure that all required files are included
     include_once([
         'lib/camera.js', 'lib/world.js', 'lib/lever.js', 'lib/door.js',
         'lib/gates/andGate.js', 'lib/gates/orGate.js', 'lib/gates/notGate.js',
