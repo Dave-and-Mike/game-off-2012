@@ -7,6 +7,7 @@ function door()
 {
     //Set up the variables required by the sprite inheritance
     this.image = gamejs.image.load('img/door.png');
+    this.image.crop( new gamejs.Rect( [0,0], [83,466] ));
 
     var _size = this.image.getSize();
     this.rect = new gamejs.Rect([0, 0], [_size[0], _size[1]]);
@@ -25,11 +26,11 @@ function door()
         {
             if ( state )
             {
-                this.rect.y -= (this.rect.height);
+                this.image.crop( new gamejs.Rect( [83,0], [83,466] ));
             }
             else
             {
-                this.rect.y += (this.rect.height);
+                this.image.crop( new gamejs.Rect( [0,0], [83,466] ));
             }
         }
 
@@ -43,7 +44,23 @@ function door()
      * @return door
      */
     this.handleCollision = function( playable ){
-        playerCollides(playable, this.rect);
+
+        if ( !this.getState() )
+        {
+            //Modify the rectangle. The player shouldn't hit the door
+            //until they are at the beam
+            var targetX  = this.rect.x + 26;
+            var targetY  = this.rect.y; 
+
+            var targetWidth  = this.rect.width - 52;
+            var targetHeight = this.rect.height;
+
+            var rect = new gamejs.Rect(
+                [targetX, targetY], [targetWidth, targetHeight]
+            );
+
+            playerCollides(playable, rect);
+        }
 
         return this;
     }

@@ -8,7 +8,7 @@ function lever()
 {
     //Fulfil the requirements of the gamejs.sprite.Sprite object
     this.image = gamejs.image.load('img/switch.png');
-    this.image.crop( new gamejs.Rect([0,0], [64,64] ));
+    this.image.crop( new gamejs.Rect( [0,0], [83,43] ));
 
     var _size = this.image.getSize();
     this.rect = new gamejs.Rect([0, 0], [_size[0], _size[1]]);
@@ -31,11 +31,11 @@ function lever()
         {
             if ( state )
             {
-                this.image.crop( new gamejs.Rect([64,0], [64,64] ));
+                this.image.crop( new gamejs.Rect( [83,0], [83,43] ));
             }
             else
             {
-                this.image.crop( new gamejs.Rect([0,0], [64,64] ));
+                this.image.crop( new gamejs.Rect( [0,0], [83,43] ));
             }
         }
 

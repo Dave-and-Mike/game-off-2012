@@ -7,10 +7,10 @@ function block()
 {
     //Load the variables required by gamejs.sprite.Sprite
     block.superConstructor.apply(this, [0, 0]);
-    this.image = gamejs.image.load('img/block.png');
+    this.image = gamejs.image.load('img/blank.png');
 
     var _size = this.image.getSize();
-    this.rect = new gamejs.Rect([0, 0], [_size[0], _size[1]]);
+    this.rect = new gamejs.Rect([0, 0], [800, 20]);
 
     /**
      * Sets the position of the object
