@@ -7,7 +7,7 @@
     ]},
     {
         "type":"tooltip","x":300,"y":641,"width":100,"height":100,
-        "text":"Press <span class='button e'>e</span> or <span class='button enter'>enter</span> to activate a switches"},
+        "text":"Press <span class='button e'>e</span> or <span class='button enter'>enter</span> to activate switches<br>At least one clone must remain at a switch to keep it active"},
     {
         "type":"tooltip","x":650,"y":641,"width":50,"height":50,
         "text":"Press <span class='button c'>c</span> to create a clone<br/>Press <span class='button tab'>tab</span> to switch between them"},

@@ -50,7 +50,7 @@ function scorecard()
     }
 
     this.hide = function(){
-
+        $('#game_scorecard_bg').fadeOut();
     }
 
     var _calcTime = function(){
@@ -62,18 +62,18 @@ function scorecard()
 
         if ( seconds > 60 )
         {
-            minutes  = (seconds % 60);
-            seconds -= (60 * minutes);
+            minutes = Math.floor( seconds / 60 );
+            seconds = (seconds % 60);
 
-            if ( minutes > 60 )
+            if ( minutes >= 60 )
             {
-                hours    = (minutes % 60);
-                minutes -= (60 * hours);
+                hours   = Math.floor( minutes / 60 );
+                minutes = (minutes % 60);
 
-                if ( hours > 24 )
+                if ( hours >= 24 )
                 {
-                    days   = (hours % 24);
-                    hours -= (24 * days);
+                    days  = Math.floor( hours / 24 );
+                    hours = (hours % 24);
                 }
             }
         }
