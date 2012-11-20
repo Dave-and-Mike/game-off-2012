@@ -19,13 +19,11 @@ gamejs.ready(function() {
 
     var mainSurface = gamejs.display.getSurface();
     var lvl         = new world();
-
-    //Initialise the world
-    lvl.init( mainSurface );
+    var lvlNum      = 0;
+    var self        = this;
 
     // msDuration = time since last tick() call
-    var tick = function(msDuration)
-    {
+    var tick = function(msDuration){
         mainSurface.fill("#FFFFFF");
 
         //Handle user input
@@ -38,5 +36,20 @@ gamejs.ready(function() {
         lvl.draw( mainSurface );
     };
 
-    gamejs.time.fpsCallback(tick, this, 60);
+    var nextLevel = function(event){
+        if ( typeof(event) !== 'undefined' )
+        {
+            event.preventDefault();
+        }
+
+        lvl.init(++lvlNum, mainSurface);
+        return false;
+    };
+
+    $('#nextLevel').live('click', nextLevel);
+
+    //Initialise the first level
+    nextLevel();
+
+    gamejs.time.fpsCallback(tick, self, 60);
 });

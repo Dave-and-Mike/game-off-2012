@@ -117,7 +117,7 @@ function io()
 
         //Ensure that the input has not already been added. We don't want to
         //attempt to add it again, that's just damned inefficient
-        if ( $.inArray(input, _inputs) )
+        if ( $.inArray(input, _inputs) == -1 )
         {
             _inputs.push(input);
             input.addOutput(this);   
@@ -142,7 +142,7 @@ function io()
 
         //Ensure that the output has not already been added. We don't want to
         //attempt to add it again, that would be silly
-        if ( $.inArray(output, _outputs) )
+        if ( $.inArray(output, _outputs) == -1 )
         {
             _outputs.push(output);
             output.addInput(this);

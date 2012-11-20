@@ -22,25 +22,41 @@ function world()
     /**
      * @var boolean Whether the world has fully loaded
      */
-    var _hasLoaded = false;
+    var _hasLoaded;
 
-    var _levelComplete = false;
+    var _levelComplete;
 
-    var _gameTime = 0;
+    var _gameTime;
 
-    var _scorecard = new scorecard();
+    var _scorecard;
 
     /**
      * @var camera The camera to use
      */
-    var _camera = new camera( this );
+    var _camera;
 
     /**
      * @var gamejs.sprite.Sprite Represents the bounding box (and background)
      * of a level
      */
-    var _levelSprite = new gamejs.sprite.Sprite();
-    _levelSprite.handleCollision = function(playable){
+    var _levelSprite;
+
+    var _levelRect;
+
+    /**
+     * @var player Represents the player
+     */
+    var _p;
+
+    /**
+     * @var gamejs.sprite.Group Represents all objects a player can
+     * interact with
+     */
+    var _objects  = new gamejs.sprite.Group();
+
+    var _goals = [];
+
+    _levelSpriteCollission = function(playable){
         var rightEdge = [
             [this.rect.right, this.rect.top],
             [this.rect.right, this.rect.bottom]
@@ -82,21 +98,6 @@ function world()
         }
     }
 
-    var _levelRect = new gamejs.Rect([0,0]);
-
-    /**
-     * @var player Represents the player
-     */
-    var _p  = new player();
-
-    /**
-     * @var gamejs.sprite.Group Represents all objects a player can
-     * interact with
-     */
-    var _objects  = new gamejs.sprite.Group();
-
-    var _goals = [];
-
     /**
      * Main initiation method. Must be called before using the object
      *
@@ -104,8 +105,10 @@ function world()
      *
      * @return world
      */
-    this.init = function( mainSurface )
+    this.init = function( levelNum, mainSurface )
     {
+        this.clear();
+
         _levelSprite.image = gamejs.image.load('img/bg.png');
 
         var _size         = _levelSprite.image.getSize();
@@ -118,7 +121,7 @@ function world()
         _camera.setHeight( mainSurface.getSize()[1] );
 
         $.ajax({
-            "url": "js/lib/levels/level_1.js",
+            "url": "js/lib/levels/level_"+levelNum+".js",
             "dataType": "json",
             "success": function(data){
                 _loadLevel(data);
@@ -132,6 +135,37 @@ function world()
 
         return this;
     }
+
+    this.clear = function(){
+        if ( _objects instanceof  gamejs.sprite.Group )
+        {
+            _objects.forEach(function(){
+                if ( typeof(this.hide) == 'function' )
+                {
+                    this.hide();
+                }
+            });
+        }
+
+        if ( _scorecard instanceof scorecard )
+        {
+            _scorecard.hide();
+        }
+
+        _hasLoaded     = false;
+        _levelComplete = false;
+        _gameTime      = 0;
+        _scorecard     = new scorecard();
+        _camera        = new camera( this );
+        _levelSprite   = new gamejs.sprite.Sprite();
+        _levelRect     = new gamejs.Rect([0,0]);
+        _p             = new player();
+        _objects       = new gamejs.sprite.Group();
+        _goals         = [];
+
+        _levelSprite.handleCollision = _levelSpriteCollission;
+    }
+
 
     this.getBoundingRect = function()
     {

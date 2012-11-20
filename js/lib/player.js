@@ -54,9 +54,11 @@ function player()
         {
             switch( event.key )
             {
-                //The space key denotes a jump. The player is not allowed
+                //The space, w, or up key denotes a jump. The player is not allowed
                 //to jump if they are already falling or jumping
                 case gamejs.event.K_SPACE:
+                case gamejs.event.K_w:
+                case gamejs.event.K_UP:
                     if ( this.getCurrentPlayable().getMovement() == 'walk' )
                     {
                         this.setVelocity( this.getVelocity().x, MIN_Y_VELOCITY );
@@ -79,8 +81,11 @@ function player()
                 //The C key clones a playable, so that the player can use
                 //that instead
                 case gamejs.event.K_c:
-                    this.clone();
-                    _numClones++;
+                    if ( _numClones < 100 )
+                    {
+                        this.clone();
+                        _numClones++;
+                    }
                     break;
 
                 //The Tab key switches between the playables that the
