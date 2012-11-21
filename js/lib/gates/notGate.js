@@ -18,12 +18,14 @@ function notGate()
      * @return io
      */
     this.addInput = function( input ){
-        if ( this.getInputs().length )
+        notGate.prototype.addInput.call(this, input);
+
+        if ( this.getInputs().length > 1 )
         {
             throw 'You may only have one input assigned to a Not gate';
         }
 
-        return notGate.prototype.addInput.call(this, input);
+        return this;
     }
 
     /**

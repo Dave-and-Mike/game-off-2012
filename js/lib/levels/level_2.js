@@ -2,7 +2,6 @@
     {"type":"stats","clonePar":1,"timePar":30},
     {"type":"wall","x":0,"y":680,"repeat-x":2},
     {"type":"player","x":150,"y": 550},
-
     {"type":"andGate","inputs":[
         {"type":"lever","x":250,"y": 641},
         {"type":"lever","x":450,"y": 641}

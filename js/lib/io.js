@@ -129,7 +129,7 @@ function io()
         if ( $.inArray(input, this._inputs) == -1 )
         {
             this._inputs.push(input);
-            input.addOutput(this);   
+            input.addOutput(this);
         }
 
         return this;
@@ -155,6 +155,7 @@ function io()
         {
             this._outputs.push(output);
             output.addInput(this);
+            _stateChange(this);
         }
 
         return this;

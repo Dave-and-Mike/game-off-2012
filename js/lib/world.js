@@ -386,7 +386,7 @@ function world()
             {
                 if ( typeof(data['outputs']) !== 'undefined' )
                 {
-                    _loadLevel(data['outputs'], obj)
+                    _loadLevel(data['outputs'], obj);
                 }
 
                 if ( typeof(data['inputs']) !== 'undefined' )
