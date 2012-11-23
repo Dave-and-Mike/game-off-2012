@@ -11,13 +11,13 @@ function world()
     const MAX_X_VELOCITY = 200;
 
     //The maximum Y velocity a player can trvel (heading down)
-    const MAX_Y_VELOCITY = 200;
+    const MAX_Y_VELOCITY = 400;
 
     //The minimum X velocity a player can trvel (heading left)
     const MIN_X_VELOCITY = -250;
 
     //The minimum Y velocity a player can trvel (heading up)
-    const MIN_Y_VELOCITY = -200;
+    const MIN_Y_VELOCITY = -400;
 
     /**
      * @var boolean Whether the world has fully loaded
@@ -348,7 +348,6 @@ function world()
         if ( 'tooltip' == data['type'] )
         {
             obj = new tooltip();
-            obj.setDimensions(data['width'], data['height']);
             obj.setText(data['text']);
             _objects.add( obj );
         }
@@ -365,6 +364,7 @@ function world()
                 case 'lever':
                 case 'door':
                 case 'goal':
+                case 'platform':
                     var type = data['type'];
                     obj      = new window[type]();
                     _objects.add( obj );
@@ -404,6 +404,16 @@ function world()
                     obj.addOutput(output);
                 }
             }
+
+            if ( typeof(obj.setDimensions) != 'undefined' )
+            {
+                if ( typeof(data['width']) != 'undefined'
+                    && typeof(data['height']) != 'undefined' )
+                {
+                    obj.setDimensions(data['width'], data['height']);
+                }
+            }
+
             var width  = obj.rect.width;
             var height = obj.rect.height;
 

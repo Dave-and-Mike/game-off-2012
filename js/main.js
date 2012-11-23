@@ -2,8 +2,10 @@ gamejs = require('gamejs');
 
 //Preload all the required images
 gamejs.preload([
-    'img/bg.png','img/player.png', 'img/blank.png'
-    ,'img/switch.png','img/door.png','img/goal.png'
+    'img/bg.png','img/player.png', 'img/blank.png',
+    'img/switch.png','img/door.png','img/goal.png',
+    'img/platform-left.png','img/platform-right.png',
+    'img/platform-middle.png'
 ]);
 
 gamejs.ready(function() {
@@ -14,7 +16,8 @@ gamejs.ready(function() {
     include_once([
         'lib/camera.js', 'lib/world.js', 'lib/lever.js', 'lib/door.js',
         'lib/gates/andGate.js', 'lib/gates/orGate.js', 'lib/gates/notGate.js',
-        'lib/player.js', 'lib/block.js', 'lib/goal.js', 'lib/tooltip.js '
+        'lib/player.js', 'lib/block.js', 'lib/goal.js', 'lib/tooltip.js',
+        'lib/platform.js'
     ]);
 
     var mainSurface = gamejs.display.getSurface();
