@@ -1,5 +1,5 @@
 [
-    {"type":"stats","clonePar":1,"timePar":30},
+    {"type":"stats","clonePar":2,"timePar":10},
     {"type":"wall","x":0,"y":680,"repeat-x":2},
     {"type":"player","x":150,"y": 550},
     {"type":"andGate","inputs":[

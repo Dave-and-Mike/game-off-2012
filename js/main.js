@@ -45,11 +45,24 @@ gamejs.ready(function() {
             event.preventDefault();
         }
 
-        lvl.init(++lvlNum, mainSurface);
+        lvlNum++;
+
+        resetLevel();
         return false;
     };
 
-    $('#nextLevel').live('click', nextLevel);
+    var resetLevel = function(event){
+        if ( typeof(event) !== 'undefined' )
+        {
+            event.preventDefault();
+        }
+
+        lvl.init(lvlNum, mainSurface);
+        return false;
+    }
+
+    $('.nextLevel').live('click', nextLevel);
+    $('.resetLevel').live('click', resetLevel);
 
     //Initialise the first level
     nextLevel();
