@@ -4,7 +4,10 @@
  *
  * @author David North
  */
- include_once(['lib/camera.js','lib/player.js', 'lib/scorecard.js']);
+ include_once(['lib/camera.js','lib/player.js', 'lib/scorecard.js',
+    'lib/lever.js', 'lib/door.js', 'lib/gates/andGate.js',
+    'lib/gates/orGate.js', 'lib/gates/notGate.js', 'lib/block.js',
+    'lib/goal.js', 'lib/tooltip.js', 'lib/platform.js']);
 function world()
 {
     //The maximum X velocity a player can trvel (heading right)

@@ -1,3 +1,17 @@
+#preload
+{
+    padding-top:250px;
+    width:800px;
+    height:600px;
+    text-align:center;
+}
+
+#preload img
+{
+    display:block;
+    margin: auto;
+}
+
 #game_tooltip
 {
     position:absolute;
