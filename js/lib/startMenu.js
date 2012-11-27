@@ -37,10 +37,24 @@ function startMenu()
             return false;
         }
 
-        $('.nextLevel .resetLevel').die();
+        var backToMenu = function(event){
+            if ( typeof(event) !== 'undefined' )
+            {
+                event.preventDefault();
+            }
+
+            _world = null;
+            $('#game_scorecard_bg').remove();
+            return false;
+        }
+
+        $('.nextLevel').die();
+        $('.resetLevel').die();
+        $('.mainMenu').die();
 
         $('.nextLevel').live('click', nextLevel);
         $('.resetLevel').live('click', resetLevel);
+        $('.mainMenu').live('click', backToMenu);
 
         //Initialise the first level
         nextLevel();
