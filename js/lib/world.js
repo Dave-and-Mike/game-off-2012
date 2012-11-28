@@ -263,7 +263,9 @@ function world()
                         isCurrentPlayer = true;
                     }
 
-                    colliders[i].b.handleCollision( colliders[i].a, isCurrentPlayer );
+                    colliders[i].b.handleCollision(
+                        colliders[i].a, isCurrentPlayer
+                    );
                 }
             }
 

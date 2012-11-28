@@ -36,6 +36,41 @@ gamejs.ready(function() {
         mainWindow.draw( mainSurface );
     };
 
+    //Set up listeners for the body when a scorecard is present
+    $('body').keydown(function(event){
+        //Only check key presses if the scorcard is shown
+        if ( $('#game_scorecard').is(":visible") )
+        {
+            switch ( event.keyCode )
+            {
+                //Enter, Space, up, w, and e will all move
+                //to the next level
+                case 13:
+                case 32:
+                case 38:
+                case 87:
+                case 69:
+                    $('#game_scorecard .nextLevel').click();
+                    event.preventDefault();
+                    break;
+                //Escape will quit to the menu
+                case 27:
+                    $('#game_scorecard .mainMenu').click();
+                    event.preventDefault();
+                    break;
+                //r will reset the level
+                case 82:
+                    $('#game_scorecard .resetLevel').click();
+                    event.preventDefault();
+                    break;
+
+            }
+        }
+    });
+
+    //Remove the loading bar
     $('#preload').remove();
+
+    //Set up the tick function, run at 60fps
     gamejs.time.fpsCallback(tick, self, 60);
 });
