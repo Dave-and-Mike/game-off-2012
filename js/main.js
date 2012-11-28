@@ -6,7 +6,7 @@ gamejs.preload([
     'img/splash-screen.png','img/new-game.png', 'img/bg.png','img/player.png',
     'img/blank.png','img/switch.png','img/door.png','img/goal.png',
     'img/platform-left.png','img/platform-right.png',
-    'img/platform-middle.png'
+    'img/platform-middle.png', 'img/selected.png'
 ]);
 
 gamejs.ready(function() {

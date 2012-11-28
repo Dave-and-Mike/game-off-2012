@@ -13,12 +13,13 @@ function lever()
     this.image.crop( new gamejs.Rect( [0,0], [83,43] ));
 
     var _size = this.image.getSize();
-    this.rect = new gamejs.Rect([0, 0], [_size[0], _size[1]]);
 
     /**
      * @var boolean Whether or the lever is being held down
      */
     var _heldDown = false;
+
+    this.rect = new gamejs.Rect([0, 0], [_size[0], _size[1]]);
 
     /**
      * Overrides the setState method of the parent so that the object changes
@@ -73,8 +74,12 @@ function lever()
      * @return lever
      */
     this.handleCollision = function( playable ){
-        //If the player is colliding with this lever then it is held down
-        _heldDown = true;
+
+        if ( _hasCollided(this, playable ) )
+        {
+            //If the player is colliding with this lever then it is held down
+            _heldDown = true;
+        }
 
         return this;
     }
@@ -92,7 +97,7 @@ function lever()
         //Only check the event if a key has been pushed and the player is
         //colliding with the lever
         if ( event.type === gamejs.event.KEY_DOWN
-            && gamejs.sprite.collideRect(playable, this) )
+            && _hasCollided(this, playable) )
         {
             //If the key was 'enter' or 'e' then set the new state of the lever
             switch( event.key )
@@ -103,6 +108,16 @@ function lever()
                     break;
             }
         }
+    }
+
+    var _hasCollided = function ( self, playable )
+    {
+        var _collideRect = new gamejs.Rect(
+            [self.rect.x + 34, self.rect.y],
+            [32 , _size[1]]
+        );
+
+        return _collideRect.collideRect(playable.rect);
     }
 }
 

@@ -257,7 +257,13 @@ function world()
             {
                 if ( typeof(colliders[i].b.handleCollision) == 'function' )
                 {
-                    colliders[i].b.handleCollision( colliders[i].a );
+                    var isCurrentPlayer = false;
+                    if ( colliders[i].a === _p.getCurrentPlayable() )
+                    {
+                        isCurrentPlayer = true;
+                    }
+
+                    colliders[i].b.handleCollision( colliders[i].a, isCurrentPlayer );
                 }
             }
 

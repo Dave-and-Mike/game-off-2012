@@ -41,6 +41,8 @@ function player()
      */
     var _currentIndex = 0;
 
+    var _selectedImg = gamejs.image.load('img/selected.png');
+
     /**
      * Handles player input.
      *
@@ -170,6 +172,17 @@ function player()
      */
     this.draw = function( mainSurface ){
         _playables.draw( mainSurface );
+
+        var x = this.getCurrentPlayable().getX();
+        var y = this.getCurrentPlayable().getY();
+
+        x += (this.getCurrentPlayable().rect.width / 2);
+        x -= (_selectedImg.getSize()[0] / 2);
+
+        y -= (_selectedImg.getSize()[1] + 2);
+
+        var rect = new gamejs.Rect([x, y])
+        mainSurface.blit(_selectedImg, rect);
         return this;
     }
 

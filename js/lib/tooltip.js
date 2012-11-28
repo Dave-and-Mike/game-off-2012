@@ -45,8 +45,11 @@ function tooltip()
         tooltip.timer = null;
     }
 
-    this.handleCollision = function(){
-        this.show();
+    this.handleCollision = function( playable, isCurrentPlayer){
+        if ( isCurrentPlayer )
+        {
+            this.show();
+        }
     }
 
     this.draw = function(){
