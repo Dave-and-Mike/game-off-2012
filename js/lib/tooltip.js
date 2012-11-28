@@ -8,7 +8,7 @@ function tooltip()
 
     if ( !($('#game_tooltip').length) )
     {
-        $('body').append('<div id="game_tooltip"></div>');
+        $('#gameWindow').append('<div id="game_tooltip"></div>');
     }
 
     var _text = '';
@@ -40,8 +40,22 @@ function tooltip()
         tooltip.timer = setTimeout(this.hide, 5000)
     }
 
-    this.hide = function(){
-        $('#game_tooltip').fadeOut();
+    this.hide = function(animate){
+        if ( typeof(animate) == 'undefined' )
+        {
+            animate = true;
+        }
+
+        if ( animate )
+        {
+            $('#game_tooltip').fadeOut();
+        }
+        else
+        {
+            $('#game_tooltip').hide();
+        }
+
+
         tooltip.timer = null;
     }
 

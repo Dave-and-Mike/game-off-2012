@@ -63,13 +63,13 @@ gamejs.ready(function() {
                     $('#game_scorecard .resetLevel').click();
                     event.preventDefault();
                     break;
-
             }
         }
     });
 
     //Remove the loading bar
     $('#preload').remove();
+    $('#gameWindow').show();
 
     //Set up the tick function, run at 60fps
     gamejs.time.fpsCallback(tick, self, 60);

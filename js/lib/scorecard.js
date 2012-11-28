@@ -11,7 +11,7 @@ function scorecard()
 
     if ( !($('#game_scorecard').length) )
     {
-        $('body').append('<div id="game_scorecard_bg"></div>');
+        $('#gameWindow').append('<div id="game_scorecard_bg"></div>');
         $('#game_scorecard_bg').append('<div id="game_scorecard"></div>');
         $('#game_scorecard').append('<h1>Results</h1>');
         $('#game_scorecard').append('<p>Number of Clones<span class="clones">0</span></p>');

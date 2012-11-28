@@ -284,6 +284,15 @@ function world()
 
             if ( _levelComplete )
             {
+                for( var i = 0; i < _objects.sprites().length; i++ )
+                {
+                    var obj = _objects.sprites()[i];
+                    if ( obj instanceof tooltip )
+                    {
+                        obj.hide(false);
+                    }
+                }
+
                 _scorecard.setTimeTaken(_gameTime / 1000);
                 _scorecard.setClonesUsed(_p.getNumClones());
                 _scorecard.show();

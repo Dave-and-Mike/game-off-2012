@@ -1,3 +1,30 @@
+body
+{
+    background-color:#ECECEC;
+}
+
+#preload, #gameWindow
+{
+    margin:auto;
+}
+
+#gameWindow
+{
+    padding:19px 29px;
+    width:800px;
+    height:600px;
+    background-image:url('../img/game-window.png');
+    background-repeat:no-repeat;
+    display:none;
+}
+
+canvas
+{
+   -moz-box-shadow:    0 0 10px #000000;
+   -webkit-box-shadow: 0 0 10px #000000;
+   box-shadow:         0 0 10px #000000;
+}
+
 #preload
 {
     padding-top:250px;
@@ -14,7 +41,7 @@
 
 #game_tooltip
 {
-    position:absolute;
+    position:relative;
     width:800px;
     background: linear-gradient(#ECECEC, #CACACA);
     border-bottom: 1px solid #9A9A9A;
@@ -25,18 +52,16 @@
     padding-bottom:10px;
     font-weight: bold;
     text-align: center;
-    top:8px;
-    left:8px;
+    top:-605px;
     display:none;
 }
 
 #game_scorecard_bg
 {
-    position:absolute;
+    position:relative;
     width:800px;
     height:600px;
-    top:8px;
-    left:8px;
+    top:-624px;
     background-color: rgba(0,0,0,0.4);
     display:none;
 }
@@ -113,29 +138,31 @@
 
 #game_scorecard .nextLevel
 {
-    background-image:url(../img/next-off.png);
+    background-image:url(../img/next-button.png);
     width:180px;
     height:92px;
     top:-313px;
     margin-left:277px;
+    background-position: 0px 0px;
 }
 
 #game_scorecard .nextLevel:hover
 {
-    background-image:url(../img/next-on.png);
+    background-position: -190px 0px;
 }
 
 #game_scorecard .mainMenu
 {
-    background-image:url(../img/menu-off.png);
+    background-image:url(../img/menu-button.png);
     width:180px;
     height:92px;
     margin-left:28px;
+    background-position: 0px 0px;
 }
 
 #game_scorecard .mainMenu:hover
 {
-    background-image:url(../img/menu-on.png);
+    background-position: -190px 0px;
 }
 
 #game_scorecard .resetLevel
