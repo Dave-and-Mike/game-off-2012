@@ -21,6 +21,11 @@ function startMenu()
                 event.preventDefault();
             }
 
+            if ( $('#game_scorecard .nextLevel').hasClass('disabled') )
+            {
+                return false;
+            }
+
             lvlNum++;
 
             resetLevel();

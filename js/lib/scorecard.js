@@ -9,6 +9,8 @@ function scorecard()
 
     var _timeTaken = 0;
 
+    var _lastLevel = false;
+
     if ( !($('#game_scorecard').length) )
     {
         $('#gameWindow').append('<div id="game_scorecard_bg"></div>');
@@ -37,9 +39,13 @@ function scorecard()
         return this;
     }
 
-    this.setClonesUsed = function( clones )
-    {
+    this.setClonesUsed = function( clones ){
         _clones = clones;
+        return this;
+    }
+
+    this.setLastLevel = function(last){
+        _lastLevel = last;
         return this;
     }
 
@@ -75,6 +81,15 @@ function scorecard()
             }
 
             $('#game_scorecard .score').append(star);
+        }
+
+        if ( _lastLevel )
+        {
+            $('#game_scorecard .nextLevel').addClass('disabled');
+        }
+        else
+        {
+            $('#game_scorecard .nextLevel').removeClass('disabled');
         }
 
         $('#game_scorecard_bg').fadeIn();

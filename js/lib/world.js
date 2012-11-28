@@ -335,6 +335,15 @@ function world()
             {
                 _scorecard.setParForClones(data[i]['clonePar']);
                 _scorecard.setParForTime(data[i]['timePar']);
+
+                if ( typeof(data[i]['lastLevel']) == 'boolean' )
+                {
+                    _scorecard.setLastLevel(data[i]['lastLevel']);
+                }
+                else
+                {
+                    _scorecard.setLastLevel(false);
+                }
             }
             else
             {

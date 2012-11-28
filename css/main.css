@@ -43,11 +43,15 @@ canvas
 {
     position:relative;
     width:800px;
+    background: -webkit-linear-gradient(#ECECEC, #CACACA);
+    background: -moz-linear-gradient(#ECECEC, #CACACA);
+    background: -o-linear-gradient(#ECECEC, #CACACA);
+    background: -ms-linear-gradient(#ECECEC, #CACACA);
     background: linear-gradient(#ECECEC, #CACACA);
     border-bottom: 1px solid #9A9A9A;
     border-radius: 0px 0px 10px 10px;
     color:#585351;
-    text-shadow: 0 1px 0 white;
+    text-shadow: 0px 1px 0px white;
     padding-top:10px;
     padding-bottom:10px;
     font-weight: bold;
@@ -172,4 +176,15 @@ canvas
     height:101px;
     top:-160px;
     margin-left:198px;
+}
+
+#game_scorecard .disabled
+{
+    opacity:0.5;
+}
+
+#game_scorecard .disabled:hover
+{
+    cursor: default;
+    background-position: 0px 0px;
 }
