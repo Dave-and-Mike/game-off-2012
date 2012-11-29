@@ -1,6 +1,7 @@
 body
 {
     background-color:#ECECEC;
+    overflow:hidden;
 }
 
 #preload, #gameWindow
@@ -23,6 +24,16 @@ canvas
    -moz-box-shadow:    0 0 10px #000000;
    -webkit-box-shadow: 0 0 10px #000000;
    box-shadow:         0 0 10px #000000;
+}
+
+#gameEnd
+{
+    position:relative;
+    display:none;
+    width:800px;
+    height:600px;
+    background-image:url('../img/end.png');
+    top:-604px;
 }
 
 #preload

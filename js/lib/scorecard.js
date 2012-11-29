@@ -85,11 +85,31 @@ function scorecard()
 
         if ( _lastLevel )
         {
-            $('#game_scorecard .nextLevel').addClass('disabled');
-        }
-        else
-        {
-            $('#game_scorecard .nextLevel').removeClass('disabled');
+            $('.nextLevel').on('click', function( event ){
+                $('#game_scorecard_bg').hide();
+                $('#gameEnd').fadeIn();
+
+                $('body').on('keydown',function(event2){
+                    switch ( event2.keyCode )
+                    {
+                        //Enter and e will all move to the next level
+                        case 13:
+                        case 69:
+                            event2.preventDefault();
+                            event2.stopImmediatePropagation();
+
+                            $('#game_scorecard .mainMenu').click();
+                            $('#gameEnd').fadeOut();
+                            $(this).off();
+                    }
+
+                    return false;
+                });
+
+                $(this).off();
+                event.preventDefault();
+                event.stopImmediatePropagation();
+            });
         }
 
         $('#game_scorecard_bg').fadeIn();
