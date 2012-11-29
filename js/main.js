@@ -43,12 +43,8 @@ gamejs.ready(function() {
         {
             switch ( event.keyCode )
             {
-                //Enter, Space, up, w, and e will all move
-                //to the next level
+                //Enter and e will all move to the next level
                 case 13:
-                case 32:
-                case 38:
-                case 87:
                 case 69:
                     $('#game_scorecard .nextLevel').click();
                     event.preventDefault();

@@ -38,6 +38,8 @@ function startMenu()
                 event.preventDefault();
             }
 
+            $('#game_scorecard_bg').hide();
+
             _world.init(lvlNum, mainSurface);
             return false;
         }
