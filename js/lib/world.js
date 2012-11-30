@@ -20,7 +20,7 @@ function world()
     const MIN_X_VELOCITY = -250;
 
     //The minimum Y velocity a player can trvel (heading up)
-    const MIN_Y_VELOCITY = -225;
+    const MIN_Y_VELOCITY = -350;
 
     /**
      * @var boolean Whether the world has fully loaded
@@ -244,7 +244,7 @@ function world()
             _gameTime += msDuration;
 
             //Apply the gravitational pull of the world
-            _applyGravity();
+            _applyGravity( msDuration );
 
             //Apply updates to the player and any objects in the world
             _p.update( msDuration );
@@ -456,13 +456,16 @@ function world()
     /**
      * Applies the gravitational pull of the world on all playables
      */
-    var _applyGravity = function()
+    var _applyGravity = function( msDuration )
     {
         //Loop through each player and increase the Y velocity downward.
         //If the player is jumping, this has the affect of slowing the
         //player down. Otherwise the player is falling.
         _p.getPlayables().forEach(function(obj){
-            obj.setVelocity( obj.getVelocity().x, (obj.getVelocity().y + 10) )
+            var newVelocityY = obj.getVelocity().y
+            newVelocityY += Math.round(0.3 * msDuration);
+
+            obj.setVelocity( obj.getVelocity().x, newVelocityY )
 
             //the velocity cannot exceed the maximums, so ensuer that the player
             //is not falling too fast

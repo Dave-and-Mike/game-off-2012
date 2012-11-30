@@ -56,13 +56,13 @@ function playerCollides(playable, rect, drag)
             newX -= drag;
         }
         playable.setVelocity( newX, 0 );
-        playable.rect.bottom = (rect.top - 0.1);
+        playable.rect.bottom = (rect.top - 0.01);
         playable.setMovement('walk');
     }
     else if ( playable.rect.collideLine(bottomEdge[0], bottomEdge[1]) )
     {
         playable.setVelocity( playable.getVelocity().x, 0 );
-        playable.rect.top = (rect.bottom + 0.1);
+        playable.rect.top = (rect.bottom + 0.01);
     }
 
     //Check the left and right colliision points. If a collision is
@@ -71,12 +71,12 @@ function playerCollides(playable, rect, drag)
     if ( playable.rect.collideLine(leftEdge[0], leftEdge[1]) )
     {
         playable.setVelocity( 0, playable.getVelocity().y );
-        playable.rect.right = (rect.left - 0.1);
+        playable.rect.right = (rect.left - 0.01);
 
     }
     else if ( playable.rect.collideLine(rightEdge[0], rightEdge[1]) )
     {
         playable.setVelocity( 0, playable.getVelocity().y );
-        playable.rect.left = (rect.right + 0.1);
+        playable.rect.left = (rect.right + 0.01);
     }
 }
