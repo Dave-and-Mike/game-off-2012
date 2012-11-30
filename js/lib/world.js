@@ -20,7 +20,7 @@ function world()
     const MIN_X_VELOCITY = -250;
 
     //The minimum Y velocity a player can trvel (heading up)
-    const MIN_Y_VELOCITY = -400;
+    const MIN_Y_VELOCITY = -225;
 
     /**
      * @var boolean Whether the world has fully loaded

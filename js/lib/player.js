@@ -83,7 +83,7 @@ function player()
                 //The C key clones a playable, so that the player can use
                 //that instead
                 case gamejs.event.K_c:
-                    if ( _numClones < 100 )
+                    if ( _numClones < 10 )
                     {
                         this.clone();
                         _numClones++;
