@@ -14,7 +14,7 @@ function player()
     const MIN_X_VELOCITY = -200;
 
     //The minimum Y velocity a player can trvel (heading up)
-    const MIN_Y_VELOCITY = -450;
+    const MIN_Y_VELOCITY = -350;
 
     /**
      * @var array An array of playables at the players disposal
